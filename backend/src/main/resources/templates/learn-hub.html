@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Reaction Time Guides — Reflex</title>
+    <meta name="description" content="Guides on reaction time: what counts as fast, how it changes with age, and how to improve yours. Then test it free on Reflex."/>
+    <link rel="canonical" th:href="${baseUrl} + '/learn'"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <style>
+        :root { --bg:#0a0a0f; --panel:#14141c; --line:#2a2a3a; --text:#e8e8f0; --muted:#9a9ab0; --cyan:#00e5ff; --magenta:#ff2d95; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,sans-serif; line-height:1.6; }
+        .wrap { max-width:680px; margin:0 auto; padding:32px 22px 80px; }
+        .back { color:var(--cyan); text-decoration:none; font-size:14px; font-weight:600; }
+        h1 { font-family:'Orbitron',sans-serif; font-weight:900; font-size:clamp(30px,7vw,46px); margin:16px 0 8px; background:linear-gradient(90deg,var(--cyan),var(--magenta)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+        .sub { color:var(--muted); margin-bottom:26px; }
+        a.card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-bottom:14px; text-decoration:none; color:inherit; transition:border-color .15s; }
+        a.card:hover { border-color:var(--cyan); }
+        a.card h2 { font-family:'Orbitron',sans-serif; font-size:18px; color:#fff; margin-bottom:6px; }
+        a.card p { color:#c8c8d8; font-size:15px; }
+    </style>
+</head>
+<body>
+<main class="wrap">
+    <a class="back" th:href="${baseUrl}">&larr; Reflex</a>
+    <h1>Reaction Time Guides</h1>
+    <p class="sub">How fast is fast, how age changes it, and how to get quicker. Then test yourself.</p>
+
+    <a class="card" th:each="a : ${articles}" th:href="'/learn/' + ${a.slug}">
+        <h2 th:text="${a.title}">Title</h2>
+        <p th:text="${a.metaDescription}">Description.</p>
+    </a>
+</main>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${a.title} + ' — Reflex'">Reflex Guide</title>
+    <meta name="description" th:attr="content=${a.metaDescription}"/>
+    <link rel="canonical" th:href="${baseUrl} + '/learn/' + ${a.slug}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" th:attr="content=${a.title}"/>
+    <meta property="og:description" th:attr="content=${a.metaDescription}"/>
+    <script type="application/ld+json" th:utext="${jsonLd}">[]</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <style>
+        :root { --bg:#0a0a0f; --panel:#14141c; --line:#2a2a3a; --text:#e8e8f0; --muted:#9a9ab0; --cyan:#00e5ff; --magenta:#ff2d95; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,sans-serif; line-height:1.65; }
+        .wrap { max-width:680px; margin:0 auto; padding:32px 22px 80px; }
+        .back { color:var(--cyan); text-decoration:none; font-size:14px; font-weight:600; }
+        h1 { font-family:'Orbitron',sans-serif; font-weight:900; font-size:clamp(28px,6vw,40px); line-height:1.2; margin:18px 0 6px; }
+        .updated { color:var(--muted); font-size:13px; margin-bottom:22px; }
+        .answer { background:var(--panel); border-left:3px solid var(--cyan); border-radius:0 12px 12px 0; padding:16px 18px; font-size:17px; margin-bottom:30px; }
+        h2 { font-family:'Orbitron',sans-serif; font-weight:700; font-size:20px; margin:30px 0 10px; }
+        h3 { font-size:17px; margin:18px 0 4px; color:#fff; }
+        p { margin:10px 0; color:#d6d6e2; }
+        .faq { margin-top:36px; border-top:1px solid var(--line); padding-top:8px; }
+        .cta { margin:36px 0; }
+        .cta a { display:inline-block; background:linear-gradient(135deg,var(--cyan),#00a6ff); color:#04131a; font-weight:700; text-decoration:none; padding:13px 22px; border-radius:12px; }
+        .more { margin-top:40px; border-top:1px solid var(--line); padding-top:14px; }
+        .more ul { list-style:none; }
+        .more li { margin:8px 0; }
+        .more a { color:var(--cyan); text-decoration:none; }
+    </style>
+</head>
+<body>
+<main class="wrap">
+    <a class="back" th:href="${baseUrl}">&larr; Reflex</a>
+    <h1 th:text="${a.title}">Title</h1>
+    <p class="updated">Updated <span th:text="${a.updated}">date</span></p>
+
+    <div class="answer" th:text="${a.answer}">Answer-first summary.</div>
+
+    <section th:each="s : ${a.sections}">
+        <h2 th:text="${s.heading}">Heading</h2>
+        <p th:each="p : ${s.paragraphs}" th:text="${p}">Paragraph.</p>
+    </section>
+
+    <section class="faq">
+        <h2>Frequently asked questions</h2>
+        <div th:each="f : ${a.faqs}">
+            <h3 th:text="${f.question}">Question?</h3>
+            <p th:text="${f.answer}">Answer.</p>
+        </div>
+    </section>
+
+    <div class="cta">
+        <a th:href="${baseUrl}">Test your reaction time on Reflex &rarr;</a>
+    </div>
+
+    <section class="more">
+        <h2>More guides</h2>
+        <ul>
+            <li th:each="o : ${articles}" th:if="${o.slug != a.slug}">
+                <a th:href="'/learn/' + ${o.slug}" th:text="${o.title}">Guide</a>
+            </li>
+        </ul>
+    </section>
+</main>
+</body>
+</html>
