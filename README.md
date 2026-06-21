@@ -2,14 +2,22 @@
 
 A small, fast web game: test your reaction time and aiming, then see how you rank against everyone else.
 
+![Reflex — reaction-time mode with live leaderboard](docs/screenshots/game-reaction.png)
+
 Built as a full-stack reference app:
 
 | Layer | Tech |
 |---|---|
 | Backend | **Java 21 · Spring Boot 3 · Spring Data JPA / Hibernate** |
 | Database | **PostgreSQL 16** — stored functions, a stored procedure, views, and a trigger |
-| Frontend | **React + Redux** (Vite) — *added in the next step* |
+| Frontend | **React + Redux** (Vite) — neon arcade UI, two game modes |
 | Packaging | **Docker** + Docker Compose (one command to run the whole stack) |
+
+## Screenshots
+
+| Aim Trainer | Server-rendered guide (`/learn`) |
+|---|---|
+| ![Aim Trainer mode](docs/screenshots/game-aim.png) | ![Reaction-time guide with JSON-LD](docs/screenshots/guide.png) |
 
 ## Run it locally
 
